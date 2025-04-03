@@ -28,6 +28,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <html lang="en">
             <Head>
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6066589868368367" crossOrigin="anonymous"></script>
+                <meta name="google-adsense-account" content="ca-pub-6066589868368367"></meta>
             </Head>
             <body className={`antialiased`}>
                 {children}
