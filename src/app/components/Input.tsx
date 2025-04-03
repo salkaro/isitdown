@@ -40,6 +40,12 @@ const Input: React.FC<InputProps> = ({ setStatus }) => {
         setLoading(false);
     }
 
+    function handleKeyDown(event: React.KeyboardEvent) {
+        if (event.key === "Enter") {
+            handleOnClick();
+        }
+    }
+
     return (
         <div className="relative flex flex-row items-center gap-4 min-w-xs sm:min-w-sm md:min-w-md lg:min-w-lg xl:min-w-xl 2xl:min-w-2xl">
             <input
@@ -47,6 +53,7 @@ const Input: React.FC<InputProps> = ({ setStatus }) => {
                 placeholder="Enter a URL"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
+                onKeyDown={handleKeyDown}
                 className="text-black placeholder-gray-600 w-full px-6 py-5 text-lg transition duration-200 ease-in-out transform border-transparent rounded-full bg-gray-200 focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
             />
 

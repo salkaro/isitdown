@@ -1,4 +1,5 @@
 // Local Imports
+import Footer from "./components/Footer";
 import Page from "./components/Page";
 
 // External Imports
@@ -39,6 +40,13 @@ export const metadata: Metadata = {
 
 export default function Home() {
     return (
-        <Page />
+        <div className="w-full">
+            <Page />
+
+            {/* Footer */}
+            <div className='stick bottom-0'>
+                <Footer />
+            </div>
+        </div>
     );
 }
