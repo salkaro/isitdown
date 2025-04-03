@@ -1,3 +1,4 @@
+import Head from "next/head";
 import type { Metadata } from "next";
 
 // Styles
@@ -25,6 +26,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
     return (
         <html lang="en">
+            <Head>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6066589868368367" crossOrigin="anonymous"></script>
+            </Head>
             <body className={`antialiased`}>
                 {children}
             </body>
