@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Input from "./Input";
+
+import { useEffect, useState } from "react";
 
 const Page = () => {
     const [status, setStatus] = useState<string>("");
@@ -14,7 +15,7 @@ const Page = () => {
     }, []);
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-start mt-48">
+        <div className="flex flex-col items-center justify-center pt-48">
             <div className="text-center">
                 <h1 className="text-5xl font-bold mb-4">Is This Website Down?</h1>
                 <p className="text-md font-semibold mb-4">Check Website Status Instantly</p>
@@ -28,7 +29,6 @@ const Page = () => {
                     {status}
                 </div>
             )}
-
         </div>
     )
 }

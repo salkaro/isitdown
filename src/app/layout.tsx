@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 // Styles
 import "@/styles/globals.css";
+import Footer from "./components/Footer";
 
 
 export const metadata: Metadata = {
@@ -38,8 +39,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
     return (
         <html lang="en">
-            <body className={`antialiased`}>
+            <body className={`bg-gray-100 antialiased`}>
                 {children}
+
+                {/* Footer */}
+                <Footer />
             </body>
         </html>
     );
