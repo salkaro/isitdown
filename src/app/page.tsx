@@ -44,7 +44,7 @@ export default function Home() {
             <Page />
 
             {/* Footer */}
-            <div className='stick bottom-0'>
+            <div>
                 <Footer />
             </div>
         </div>
