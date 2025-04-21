@@ -22,7 +22,13 @@ export async function GET(request: Request) {
 
     try {
         // Use a HEAD request for a quick check.
-        const response = await fetch(formattedUrl, { method: 'HEAD' });
+        const response = await fetch(formattedUrl, { 
+            method: "HEAD",
+            // this tells Next’s fetch not to cache nor re‑use
+            cache: "no-store",
+            // follow redirects (optional but often helpful)
+            redirect: "follow",
+        });
 
         // If the fetch is successful and the status is OK, the site is up.
         if (response.ok) {
