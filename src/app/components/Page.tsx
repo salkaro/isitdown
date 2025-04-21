@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 const Page = () => {
     const [status, setStatus] = useState<string>("");
+    const [ip, setIp] = useState<{ address: string, family: number }>();
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', "light");
@@ -21,12 +22,13 @@ const Page = () => {
                 <p className="text-md font-semibold mb-4">Check Website Status Instantly</p>
             </div>
             <div className="text-center">
-                <Input setStatus={setStatus} />
+                <Input setStatus={setStatus} setIp={setIp} />
             </div>
 
             {status && (
                 <div className="mt-4 text-lg font-semibold text-center">
-                    {status}
+                    <p>{status}</p>
+                    <p>{ip ? `IPv${ip.family}: ${ip.address}` : ""}</p>
                 </div>
             )}
         </div>

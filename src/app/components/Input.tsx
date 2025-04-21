@@ -4,14 +4,16 @@
 import LoadingSpinner from "./LoadingSpinner";
 
 // External Imports
+import { getReasonPhrase } from 'http-status-codes';
 import { useState } from "react"
 
 
 interface InputProps {
     setStatus: (status: string) => void;
+    setIp: (ip: { address: string, family: number }) => void;
 }
 
-const Input: React.FC<InputProps> = ({ setStatus }) => {
+const Input: React.FC<InputProps> = ({ setStatus, setIp }) => {
     const [url, setUrl] = useState<string>("")
     const [loading, setLoading] = useState<boolean>(false)
 
@@ -27,10 +29,13 @@ const Input: React.FC<InputProps> = ({ setStatus }) => {
             const response = await fetch(`/api/isitdown?url=${encodeURIComponent(url)}`);
             const data = await response.json();
 
-            if (data.down) {
-                setStatus(`The site is down (status: ${data.status || "unknown"}).`);
+            if (data.down && data.status) {
+                setStatus(`The site is down (status: ${data.status || "unknown"}). ${getReasonPhrase(data.status)}`);
+            } else if (data.down && data.error) {
+                setStatus(`The site could not be found. No valid domain exists.`);
             } else {
-                setStatus(`The site is up (status: ${data.status}).`);
+                setStatus(`The site is up (status: ${data.status}). ${getReasonPhrase(data.status)}`);
+                setIp(data.ip);
             }
         } catch (error) {
             console.log(error);
@@ -54,7 +59,7 @@ const Input: React.FC<InputProps> = ({ setStatus }) => {
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 onKeyDown={handleKeyDown}
-                className="text-black placeholder-gray-600 w-full px-6 py-5 text-lg transition duration-200 ease-in-out transform border-transparent rounded-full bg-gray-200 focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                className="text-black placeholder-gray-600 w-full px-6 py-5 text-lg transition duration-200 ease-in-out transform border-transparent rounded-full bg-gray-200 focus:border-blueGray-500 focus:bg-white focus:outline-hidden focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
             />
 
             <button
